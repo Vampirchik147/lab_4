@@ -64,7 +64,7 @@ document.write('<h1>Привет, ' + getCookie('name') + '!</h1>')
 @app.route('/set_name')
 def cookie_setter():
     response = flask.make_response(flask.redirect('/'))
-    response.set_cookie('name', flask.request.args.get('name'), secure=True)
+    response.set_cookie('name', flask.request.args.get('name'))
     return response
 
 
@@ -123,7 +123,7 @@ def login_page():
         if redirect_url:
             response = flask.make_response(flask.redirect(redirect_url))
             if just_auth:
-                response.set_cookie('ssid', hmac.digest(), secure=True)
+                response.set_cookie('ssid', hmac.digest())
             return response
 
         return """
