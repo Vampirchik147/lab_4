@@ -75,16 +75,13 @@ from db import get_connection
 def authenticate(name, password):
     sql_statement = "SELECT * " \
                     "FROM users " \
-                    "WHERE name='{name}' "\
-                    "AND password='{password}';".format(
-                                                        name=name,
-                                                        password=password,
-                                                    )
+                    "WHERE name=? "\
+                    "AND password=?;"
     cursor = get_connection(
                             os.environ['DB_LOGIN'],
                             os.environ['DB_PASSWORD']
                             ).cursor()
-    result = cursor.execute(sql_statement).fetchone()
+    result = cursor.execute(sql_statement, (name, password)).fetchone()
     cursor.close()
     return result
 
