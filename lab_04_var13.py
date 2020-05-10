@@ -31,24 +31,19 @@ def introduction():
 """
 
 
+from flask import escape
+
 @app.route('/')
 def index_page():
     if flask.request.cookies.get('name'):
         return """
             <html>
                 <title>Приветствие</title>
-                <script>
-window.getCookie = function(name) {
-  var match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
-  if (match) return match[2];
-}
-document.write('<h1>Привет, ' + getCookie('name') + '!</h1>')
-                </script>
                 <body>
-
+                     <h1>Привет, %s!</h1>
                 </body>
             </html>
-"""
+""" %escape(flask.request.cookies.get('name'))
     else:
         return """
             <html>
