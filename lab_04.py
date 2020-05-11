@@ -136,7 +136,7 @@ def login_pag():
     if already_auth or just_auth:
         redirect_url = flask.request.args.get('redirect_url', '/')
         if redirect_url:
-            response = flask.make_response(flask.redirect(url_for(redirect_url)))
+            response = flask.make_response(flask.redirect(redirect_url))
             if just_auth:
                 response.set_cookie('ssid', hmac_inst.hexdigest())
             return response
