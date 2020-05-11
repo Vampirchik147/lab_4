@@ -123,7 +123,7 @@ def login_pag():
     name = flask.request.form.get('name')
     password = flask.request.form.get('password')
 
-    if name == None or password == None:
+    if name is None or password is None:
         return """
         <html>
             <body>
