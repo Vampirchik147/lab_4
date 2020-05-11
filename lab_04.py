@@ -112,7 +112,7 @@ def index_page_html():
 
 
 import hmac
-
+from flask import url_for
 
 @app.route('/auth', methods=["GET", "POST"])
 def login_pag():
