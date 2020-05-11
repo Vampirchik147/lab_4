@@ -78,7 +78,7 @@ if not result:
     conn.commit()
 cursor.close()
 conn.close()
-# from db import get_connection
+
 
 
 def authenticate(name, password):
@@ -88,10 +88,6 @@ def authenticate(name, password):
 
     conn = sqlite3.connect("test.db3")
     cursor = conn.cursor()
-    # cursor = sqlite3.connect(
-    #                         os.environ['DB_LOGIN'],
-    #                         os.environ['DB_PASSWORD']
-    #                         ).cursor()
     result = cursor.execute(sql_statement, (name, password)).fetchone()
     cursor.close()
     conn.close()
@@ -132,7 +128,6 @@ def login_pag():
         </html>
     """
     hmac_msg = name + password + "SALT_123nwjdnf023"
-    # hmac.new(os.environ['SIGNATURE_KEY'].encode('utf8'),
     hmac_inst = hmac.new("my_super_secure_key".encode('utf8'),
                          msg=hmac_msg.encode('utf8'),
                          digestmod='sha256')
