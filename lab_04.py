@@ -58,7 +58,7 @@ def index_page():
 @app.route('/set_name')
 def cookie_setter():
     response = flask.make_response(flask.redirect('/'))
-    response.set_cookie('name', flask.request.args.get('name'))
+    response.set_cookie('name', escape(flask.request.args.get('name')))
     return response
 
 
